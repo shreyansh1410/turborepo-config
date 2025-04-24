@@ -1,5 +1,5 @@
 {
-  "name": "turborepo-config",
+  "name": "create-turborepo-config",
   "version": "1.0.0",
   "description": "A monorepo scaffolding and configuration package for Turborepo-based projects, including React, Next.js, HTTP, and WebSocket backends.",
   "repository": {
@@ -36,8 +36,18 @@
     "turbo": "^2.5.1",
     "typescript": "5.8.2"
   },
+  "bin": {
+    "create-turborepo-config": "bin/cli.js"
+  },
   "packageManager": "pnpm@9.0.0",
   "engines": {
     "node": ">=18"
-  }
+  },
+  "dependencies": {
+    "fs-extra": "^11.3.0"
+  },
+  "files": [
+    "bin/",
+    "template/"
+  ]
 }
