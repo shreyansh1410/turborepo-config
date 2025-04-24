@@ -4,7 +4,7 @@
   "description": "A monorepo scaffolding and configuration package for Turborepo-based projects, including React, Next.js, HTTP, and WebSocket backends.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/turborepo-config.git"
+    "url": "https://github.com/shreyansh1410/turborepo-config"
   },
   "author": "Shreyansh Shukla",
   "license": "MIT",
