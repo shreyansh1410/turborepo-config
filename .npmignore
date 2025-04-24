@@ -1,0 +1,26 @@
+# Exclude node_modules and build artifacts
+dist/
+build/
+node_modules/
+.git/
+.gitignore
+npm-debug.log
+yarn.lock
+pnpm-lock.yaml
+*.tgz
+*.log
+.DS_Store
+.env*
+coverage/
+# Exclude IDE/editor configs
+.vscode/
+.idea/
+# Exclude OS files
+Thumbs.db
+# Exclude test files
+**/__tests__/
+**/*.test.*
+**/*.spec.*
+# Exclude workspace-only files
+turbo.json
+README.md

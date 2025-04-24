@@ -1,84 +1,158 @@
-# Turborepo starter
+# My Turborepo Config Package
 
-This Turborepo starter is maintained by the Turborepo core team.
+> A scaffolding and configuration package for Turborepo-based monorepos, providing boilerplate for React frontend, Next.js web, HTTP backend, and WebSocket backend.
 
-## Using this example
+---
 
-Run the following command:
+## Table of Contents
 
-```sh
-npx create-turbo@latest
+1. [Introduction](#introduction)
+2. [Features](#features)
+3. [Prerequisites](#prerequisites)
+4. [Installation & Usage](#installation--usage)
+   - [Global Install](#global-install)
+   - [Using NPX](#using-npx)
+5. [Generated Structure](#generated-structure)
+6. [Configuration Details](#configuration-details)
+   - [React Frontend](#react-frontend)
+   - [Next.js Web](#nextjs-web)
+   - [HTTP Backend](#http-backend)
+   - [WebSocket Backend](#websocket-backend)
+7. [Customization](#customization)
+8. [CLI Commands](#cli-commands)
+9. [Contributing](#contributing)
+10. [License](#license)
+
+---
+
+## Introduction
+
+This package provides a one‑stop scaffolding solution for monorepos powered by Turborepo. It generates a opinionated boilerplate containing:
+
+- A React-based frontend
+- A Next.js-powered web directory (`/web`)
+- An HTTP backend service (`/services/api`)
+- A WebSocket backend service (`/services/ws`)
+
+Use it to jumpstart new projects without manually wiring up each workspace.
+
+---
+
+## Features
+
+- Standardized folder structure
+- Preconfigured `tsconfig.json`, ESLint, Prettier, and Jest
+- `turborepo.json` workspace setup with optimized caching
+- Environment variable management via `.env` files
+
+---
+
+## Prerequisites
+
+- Node.js v16+ (LTS recommended)
+- npm v8+ or yarn v1/v2
+- Git
+
+---
+
+## Installation & Usage
+
+### Global Install
+
+Install globally and scaffold a new project:
+
+```bash
+npm install -g create-turbo-monorepo
+create-turbo-monorepo my-project
+```  
+
+### Using NPX
+
+Without global install:
+
+```bash
+npx create-turbo-monorepo my-project
+```  
+
+Follow the interactive prompts or pass flags:
+
+```bash
+npx create-turbo-monorepo my-project --template typescript --name my-org
 ```
 
-## What's inside?
+---
 
-This Turborepo includes the following packages/apps:
+## Generated Structure
 
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm build
+```text
+my-project/
+├── apps/
+│   ├── web/              # Next.js frontend
+│   └── react-frontend/   # CRA / Vite React app
+├── services/
+│   ├── api/              # HTTP backend (Express/Koa)
+│   └── ws/               # WebSocket backend (ws / socket.io)
+├── packages/
+│   └── config/           # Shared configs (eslint, tsconfig, etc.)
+├── turbo.json            # Turborepo config
+├── package.json
+└── README.md
 ```
 
-### Develop
+---
 
-To develop all apps and packages, run the following command:
+## Configuration Details
 
-```
-cd my-turborepo
-pnpm dev
-```
+### React Frontend
 
-### Remote Caching
+- Uses Vite
+- Entry: `apps/react-web`
+- Linted with ESLint and Prettier
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+### Next.js Web
 
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+- Based on Next.js 15 & React 19
+- Entry: `apps/web`
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
+### HTTP Backend
 
-```
-cd my-turborepo
-npx turbo login
-```
+- Express.js server in `apps/http-backend`
+- `tsconfig` path alias for shared code
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+### WebSocket Backend
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+- Uses `ws` library in `apps/ws-backend`
+- Example echo server and broadcast utility
 
-```
-npx turbo link
-```
+---
 
-## Useful Links
+## CLI Commands
 
-Learn more about the power of Turborepo:
+- `npm run dev`  
+  Starts all workspaces in parallel (via Turborepo pipeline).
 
-- [Tasks](https://turborepo.com/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turborepo.com/docs/core-concepts/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+- `npm run build`  
+  Builds all workspaces sequentially.
+
+- `npm run lint`  
+  Lints all code.
+
+- `npm test`  
+  Runs tests across services.
+
+---
+
+## Contributing
+
+1. Fork the repo
+2. Clone your fork
+3. Run `npm install`
+4. Create a branch: `git checkout -b feature/your-feature`
+5. Commit changes and open a PR
+
+
+---
+
+## License
+
+MIT © Shreyansh Shukla
